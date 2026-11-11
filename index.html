@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<!--
+  ==========================================================================
+  ELECTRA: The Invisible Forces That Power Our World
+  Engineered & Designed by: Ujan Barai
+  Academic Affiliation: B.Tech in Electrical Engineering, KGEC
+  Core Engine: Custom HTML5 Canvas Electrostatic & Wave Physics Engine
+  ==========================================================================
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="Ujan Barai">
+  <meta name="description" content="An interactive exploration of electrical engineering, power grids, bio-electricity, and wave physics created by Ujan Barai (EE, KGEC).">
+  <title>ELECTRA — The Invisible Forces | Ujan Barai (EE, KGEC)</title>
+
+  <!-- Custom Embedded SVG Lightning Emblem (Browser Tab Icon) -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='24' fill='%2307080f'/><path d='M56 10L22 56h26L42 90l36-48H52L56 10z' fill='%23ffb703' stroke='%2300f5d4' stroke-width='3'/></svg>">
+
+  <!-- Professional Engineering Typography (Space Grotesk, Plus Jakarta Sans, JetBrains Mono) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+
+  <!-- Master Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Background Ambient Glow Orbs -->
+  <div class="ambient-orb orb-gold" aria-hidden="true"></div>
+  <div class="ambient-orb orb-coral" aria-hidden="true"></div>
+  <div class="ambient-orb orb-cyan" aria-hidden="true"></div>
+
+  <!-- Top Engineering Telemetry Navigation Bar -->
+  <header class="top-nav">
+    <div class="nav-container">
+      <a href="#hero" class="brand-identity">
+        <span class="brand-pulse"></span>
+        <span class="brand-title">ELECTRA</span>
+        <span class="brand-divider">//</span>
+        <span class="brand-author">UJAN BARAI</span>
+      </a>
+
+      <nav class="nav-links">
+        <a href="#grid-module">01. 50Hz Grid</a>
+        <a href="#bio-module">02. Bio-Electric</a>
+        <a href="#synth-module">03. Sound Waves</a>
+        <a href="#magic-module">04. Daily Magic</a>
+        <a href="#vault-module">05. Engineer's Vault</a>
+      </nav>
+
+      <div class="nav-telemetry">
+        <span class="credential-pill">B.Tech EE &bull; KGEC</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO EXPERIENCE: Interactive Electrostatic Plasma Field -->
+  <section id="hero" class="hero-section">
+    <!-- Live Interactive Physics Canvas -->
+    <canvas id="hero-canvas"></canvas>
+
+    <div class="hero-content">
+      <div class="signature-eyebrow">
+        <span class="status-dot"></span>
+        <span>INTERACTIVE PHYSICS LABORATORY &bull; ENGINEERED BY UJAN BARAI (KGEC EE)</span>
+      </div>
+
+      <h1 class="hero-headline">
+        The Invisible Forces That <span class="gradient-text">Illuminate Our World.</span>
+      </h1>
+
+      <p class="hero-lead">
+        Electricity is far more than copper wires and transformers. It is the silent symphony balancing entire cities at 50 cycles per second, the biological spark behind every human heartbeat, and the pure mathematics turning voltage into music. Move your finger or cursor across this screen to bend the live electrostatic field.
+      </p>
+
+      <!-- Interactive Field Polarity Controls -->
+      <div class="field-controller-card">
+        <div class="controller-header">
+          <span class="mono-label">LIVE COULOMB FIELD CONTROLLER:</span>
+          <span class="formula-badge">F = k &middot; (q₁q₂) / r²</span>
+        </div>
+
+        <div class="polarity-buttons">
+          <button class="mode-btn active" data-mode="attract">
+            <span class="dot-gold"></span> Attractive Dipole (+q / &minus;q)
+          </button>
+          <button class="mode-btn" data-mode="repel">
+            <span class="dot-coral"></span> Electrostatic Repulsion (+q / +q)
+          </button>
+          <button class="mode-btn" data-mode="vortex">
+            <span class="dot-cyan"></span> Magnetic Lorentz Vortex (B-Field)
+          </button>
+        </div>
+
+        <!-- Live Cursor Telemetry Readout -->
+        <div class="telemetry-strip">
+          <div class="telemetry-item">
+            <span class="telemetry-label">ELECTRIC FIELD (E)</span>
+            <span class="telemetry-value" id="readout-efield">142.8 kV/m</span>
+          </div>
+          <div class="telemetry-item">
+            <span class="telemetry-label">PARTICLE VELOCITY</span>
+            <span class="telemetry-value" id="readout-velocity">2.40 &times; 10⁶ m/s</span>
+          </div>
+          <div class="telemetry-item">
+            <span class="telemetry-label">GRID SYNCHRONIZATION</span>
+            <span class="telemetry-value text-cyan" id="readout-freq">50.00 Hz LOCKED</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-cta-row">
+        <a href="#grid-module" class="btn-primary">Enter the Engineering Modules &darr;</a>
+        <button id="pulse-burst-btn" class="btn-secondary">Trigger Electromagnetic Pulse &⚡;</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAIN INTERACTIVE MODULES CONTAINER -->
+  <main class="modules-wrapper">
+
+    <!-- === STEP 3 MODULES: LIVE 50HZ GRID & BIO-ELECTRIC HUMAN === -->
+
+    <!-- MODULE 01: TAMING LIGHTNING — THE LIVE 50 HZ CITY POWER GRID -->
+    <section id="grid-module" class="eng-module">
+      <div class="module-header">
+        <div class="module-badge-row">
+          <span class="module-index">MODULE 01 // POWER SYSTEMS ENGINEERING</span>
+          <span class="module-equation">f = (N &middot; P) / 120 = 50.00 Hz</span>
+        </div>
+        <h2 class="module-title">Taming Lightning: <span class="gradient-text">The 50 Hz Synchronous Grid</span></h2>
+        <p class="module-subtitle">
+          Electricity cannot be stored inside transmission wires—every watt generated at a power station must be consumed the exact millisecond it is produced. Across India, every turbine spins in lockstep at exactly <strong>50 cycles per second (50.00 Hz)</strong>. If power generation falls behind city demand, the frequency drops and triggers a blackout; if generation is too high, transformers overheat. Balance the sliders below to illuminate the city.
+        </p>
+      </div>
+
+      <div class="grid-simulator-layout">
+        <!-- Left Column: Interactive Generator Controls & Demand Presets -->
+        <div class="grid-controls-card">
+          <div class="card-top-bar">
+            <span class="mono-label">GENERATOR DISPATCH CONSOLE</span>
+            <button id="pid-stabilize-btn" class="btn-pid">⚡ Auto-Stabilize (PID Loop)</button>
+          </div>
+
+          <!-- City Demand Scenario Buttons -->
+          <div class="scenario-selector">
+            <span class="scenario-label">Select City Load Scenario:</span>
+            <div class="scenario-btn-group">
+              <button class="scenario-btn active" data-demand="450">🌅 Morning (450 MW)</button>
+              <button class="scenario-btn" data-demand="680">🌧️ Monsoon Peak (680 MW)</button>
+              <button class="scenario-btn" data-demand="880">✨ Festival Night (880 MW)</button>
+            </div>
+          </div>
+
+          <!-- Three Renewable Generation Sliders -->
+          <div class="sliders-stack">
+            <div class="slider-group">
+              <div class="slider-header">
+                <span class="source-name"><span class="dot-gold"></span> Solar Photovoltaic Array</span>
+                <span class="source-val text-gold" id="val-solar">180 MW</span>
+              </div>
+              <input type="range" id="slider-solar" class="eng-slider slider-gold" min="0" max="400" value="180" step="5">
+            </div>
+
+            <div class="slider-group">
+              <div class="slider-header">
+                <span class="source-name"><span class="dot-cyan"></span> Offshore Wind Turbines</span>
+                <span class="source-val text-cyan" id="val-wind">150 MW</span>
+              </div>
+              <input type="range" id="slider-wind" class="eng-slider slider-cyan" min="0" max="400" value="150" step="5">
+            </div>
+
+            <div class="slider-group">
+              <div class="slider-header">
+                <span class="source-name"><span class="dot-coral"></span> Hydroelectric Dam Turbines</span>
+                <span class="source-val text-coral" id="val-hydro">120 MW</span>
+              </div>
+              <input type="range" id="slider-hydro" class="eng-slider slider-coral" min="0" max="400" value="120" step="5">
+            </div>
+          </div>
+
+          <!-- Live Grid Telemetry Readouts -->
+          <div class="grid-metrics-row">
+            <div class="metric-box">
+              <span class="metric-label">TOTAL GENERATION</span>
+              <span class="metric-num" id="grid-total-gen">450 MW</span>
+            </div>
+            <div class="metric-box">
+              <span class="metric-label">CITY LOAD DEMAND</span>
+              <span class="metric-num" id="grid-target-load">450 MW</span>
+            </div>
+            <div class="metric-box">
+              <span class="metric-label">GRID FREQUENCY</span>
+              <span class="metric-num text-cyan" id="grid-live-freq">50.00 Hz</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column: Live 50Hz Oscilloscope & Interactive City Skyline -->
+        <div class="grid-visual-card">
+          <div class="card-top-bar">
+            <span class="mono-label">LIVE 3-PHASE AC WAVEFORM &amp; SKYLINE TELEMETRY</span>
+            <span id="grid-status-pill" class="status-pill status-optimal">SYNCHRONIZED &bull; 50.00 Hz</span>
+          </div>
+
+          <!-- Real-Time AC Sine Wave Canvas -->
+          <div class="canvas-frame">
+            <canvas id="grid-wave-canvas" width="560" height="150"></canvas>
+          </div>
+
+          <!-- Interactive Glowing City Skyline -->
+          <div id="city-skyline-stage" class="city-stage grid-balanced">
+            <div class="sky-stars"></div>
+            <div class="city-buildings">
+              <div class="bldg b1"><div class="win-grid"></div></div>
+              <div class="bldg b2"><div class="spire"></div><div class="win-grid"></div></div>
+              <div class="bldg b3"><div class="win-grid"></div></div>
+              <div class="bldg b4"><div class="spire"></div><div class="win-grid"></div></div>
+              <div class="bldg b5"><div class="win-grid"></div></div>
+              <div class="bldg b6"><div class="win-grid"></div></div>
+            </div>
+            <div class="city-ground-glow"></div>
+            <div class="city-caption" id="city-status-caption">
+              ⚡ Grid Locked at 50.00 Hz — All Substations &amp; Skyline Towers Illuminated
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MODULE 02: THE BIO-ELECTRIC HUMAN -->
+    <section id="bio-module" class="eng-module">
+      <div class="module-header">
+        <div class="module-badge-row">
+          <span class="module-index">MODULE 02 // BIO-ELECTROMAGNETISM &amp; NEURAL SIGNALS</span>
+          <span class="module-equation">&Delta;V = &minus;70 mV &rarr; +30 mV (Action Potential)</span>
+        </div>
+        <h2 class="module-title">The Bio-Electric Human: <span class="gradient-text">Heartbeats &amp; Neural Sparks</span></h2>
+        <p class="module-subtitle">
+          Long before engineers built copper circuits, nature perfected biological electricity. Every thought in your brain and every beat of your heart is triggered by microscopic sodium (<strong>Na<sup>+</sup></strong>) and potassium (<strong>K<sup>+</sup></strong>) ions rushing across cell membranes to generate real millivolt pulses. Explore how human emotion and focus reshape your body's electrical waveforms in real time.
+        </p>
+      </div>
+
+      <div class="bio-simulator-layout">
+        <!-- Left Column: Dual-Channel Biomedical Oscilloscope (ECG + EEG) -->
+        <div class="bio-monitor-card">
+          <div class="card-top-bar">
+            <span class="mono-label">DUAL-CHANNEL BIOMEDICAL OSCILLOSCOPE</span>
+            <div class="channel-legend">
+              <span class="legend-coral">&mdash; CH1: Cardiac ECG (P-Q-R-S-T)</span>
+              <span class="legend-cyan">&mdash; CH2: Neural EEG Wave</span>
+            </div>
+          </div>
+
+          <div class="bio-canvas-container">
+            <canvas id="bio-canvas" width="640" height="270"></canvas>
+          </div>
+
+          <div class="bio-telemetry-bar">
+            <div class="bio-stat">
+              <span class="metric-label">SA NODE PACEMAKER</span>
+              <span class="metric-num text-coral" id="bio-bpm-readout">68 BPM</span>
+            </div>
+            <div class="bio-stat">
+              <span class="metric-label">DOMINANT BRAINWAVE</span>
+              <span class="metric-num text-cyan" id="bio-wave-readout">Alpha (10 Hz)</span>
+            </div>
+            <div class="bio-stat">
+              <span class="metric-label">MEMBRANE POTENTIAL</span>
+              <span class="metric-num text-gold" id="bio-voltage-readout">&minus;70 mV &rarr; +30 mV</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column: Physiological State Presets & Manual Controls -->
+        <div class="bio-controls-card">
+          <div class="card-top-bar">
+            <span class="mono-label">PHYSIOLOGICAL STATE TUNER</span>
+          </div>
+
+          <div class="bio-state-buttons">
+            <button class="bio-state-btn active" data-bpm="64" data-eeg="alpha" data-label="Alpha (10 Hz)" data-desc="Calm, peaceful relaxation. Your Sinoatrial (SA) node fires steady 64 BPM impulses while cortical neurons synchronize in smooth 10 Hz Alpha waves.">
+              <div class="state-btn-title">🌙 Deep Calm &amp; Stargazing</div>
+              <div class="state-btn-sub">64 BPM Cardiac Rhythm &bull; 10 Hz Alpha Neural Waves</div>
+            </button>
+
+            <button class="bio-state-btn" data-bpm="82" data-eeg="beta" data-label="Beta (22 Hz)" data-desc="Active problem-solving and engineering concentration. Rapid 22 Hz Beta oscillations coordinate logic pathways across the prefrontal cortex.">
+              <div class="state-btn-title">⚡ Engineering Flow State</div>
+              <div class="state-btn-sub">82 BPM Cardiac Rhythm &bull; 22 Hz Beta Neural Waves</div>
+            </button>
+
+            <button class="bio-state-btn" data-bpm="114" data-eeg="gamma" data-label="Gamma Burst (40 Hz)" data-desc="When you see someone you deeply love, sympathetic nerves release adrenaline and dopamine—accelerating the SA node to 114 BPM while igniting high-frequency 40 Hz Gamma resonance across the brain.">
+              <div class="state-btn-title">💖 Falling in Love (Resonance Surge)</div>
+              <div class="state-btn-sub">114 BPM Cardiac Rhythm &bull; 40 Hz Gamma Neural Synchronization</div>
+            </button>
+          </div>
+
+          <!-- Manual Heart Rate Override Slider -->
+          <div class="slider-group bio-manual-slider">
+            <div class="slider-header">
+              <span class="source-name">Manual Cardiac Pacemaker Frequency</span>
+              <span class="source-val text-coral" id="bio-slider-label">64 BPM</span>
+            </div>
+            <input type="range" id="bio-bpm-slider" class="eng-slider slider-coral" min="50" max="135" value="64" step="1">
+          </div>
+
+          <p class="bio-explanation-box" id="bio-state-explanation">
+            Calm, peaceful relaxation. Your Sinoatrial (SA) node fires steady 64 BPM impulses while cortical neurons synchronize in smooth 10 Hz Alpha waves.
+          </p>
+
+          <button id="fire-synapse-btn" class="btn-synapse">
+            ✨ Fire +30 mV Neural Action Potential Spike
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- === END OF STEP 3 SLOT === -->
+
+    <!-- === STEP 4 MODULES: VOLTAGE SYNTHESIZER, DAILY MAGIC & ENGINEER'S VAULT === -->
+
+    <!-- MODULE 03: SCULPTING SOUND FROM VOLTAGE (FOURIER SYNTHESIZER) -->
+    <section id="synth-module" class="eng-module">
+      <div class="module-header">
+        <div class="module-badge-row">
+          <span class="module-index">MODULE 03 // SIGNAL PROCESSING &amp; ACOUSTIC WAVES</span>
+          <span class="module-equation">v(t) = &Sigma; Aₙ &middot; sin(2&pi; &middot; n &middot; f₀ &middot; t)</span>
+        </div>
+        <h2 class="module-title">Sculpting Sound from Voltage: <span class="gradient-text">The Fourier Synthesizer</span></h2>
+        <p class="module-subtitle">
+          Every song you stream through headphones begins as a silent, fluctuating voltage inside a wire. By applying <strong>Fourier's Theorem</strong>, electrical engineers combine simple mathematical sine waves—a fundamental frequency (<strong>f₀</strong>) plus harmonic overtones (<strong>2f₀, 3f₀</strong>)—to sculpt the rich warmth of a piano, guitar, or human voice. Tap the luminous keys below to generate real-time audio waves directly from browser voltage math.
+        </p>
+      </div>
+
+      <div class="synth-simulator-layout">
+        <!-- Left Column: Live Fourier Oscilloscope & Harmonic Overtone Mixer -->
+        <div class="synth-monitor-card">
+          <div class="card-top-bar">
+            <span class="mono-label">LIVE FOURIER HARMONIC OSCILLOSCOPE</span>
+            <span id="synth-freq-pill" class="status-pill status-optimal">f₀ = 440.00 Hz (A4)</span>
+          </div>
+
+          <div class="canvas-frame">
+            <canvas id="synth-canvas" width="580" height="190"></canvas>
+          </div>
+
+          <!-- Harmonic Overtones Sliders -->
+          <div class="sliders-stack synth-sliders">
+            <div class="slider-group">
+              <div class="slider-header">
+                <span class="source-name"><span class="dot-cyan"></span> 1st Harmonic (Fundamental f₀)</span>
+                <span class="source-val text-cyan" id="val-h1">100%</span>
+              </div>
+              <input type="range" id="slider-h1" class="eng-slider slider-cyan" min="10" max="100" value="100">
+            </div>
+
+            <div class="slider-group">
+              <div class="slider-header">
+                <span class="source-name"><span class="dot-gold"></span> 2nd Harmonic (Octave Overtones 2f₀)</span>
+                <span class="source-val text-gold" id="val-h2">45%</span>
+              </div>
+              <input type="range" id="slider-h2" class="eng-slider slider-gold" min="0" max="100" value="45">
+            </div>
+
+            <div class="slider-group">
+              <div class="slider-header">
+                <span class="source-name"><span class="dot-coral"></span> 3rd Harmonic (Fifth Brilliance 3f₀)</span>
+                <span class="source-val text-coral" id="val-h3">25%</span>
+              </div>
+              <input type="range" id="slider-h3" class="eng-slider slider-coral" min="0" max="100" value="25">
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column: Playable Luminous Acoustic Keyboard -->
+        <div class="synth-keyboard-card">
+          <div class="card-top-bar">
+            <span class="mono-label">INTERACTIVE WEB-AUDIO VOLTAGE KEYBOARD</span>
+            <button id="play-chord-btn" class="btn-pid">🎵 Play Luminous Major Chord</button>
+          </div>
+
+          <p class="synth-helper-text">
+            Tap or click any frequency pad below to trigger a polyphonic Web Audio oscillator and watch the harmonic waveform transform on the oscilloscope:
+          </p>
+
+          <div class="piano-keys-grid">
+            <button class="synth-key" data-note="C4" data-freq="261.63">
+              <span class="key-note">C4</span>
+              <span class="key-hz">261.6 Hz</span>
+            </button>
+            <button class="synth-key" data-note="D4" data-freq="293.66">
+              <span class="key-note">D4</span>
+              <span class="key-hz">293.7 Hz</span>
+            </button>
+            <button class="synth-key" data-note="E4" data-freq="329.63">
+              <span class="key-note">E4</span>
+              <span class="key-hz">329.6 Hz</span>
+            </button>
+            <button class="synth-key" data-note="F4" data-freq="349.23">
+              <span class="key-note">F4</span>
+              <span class="key-hz">349.2 Hz</span>
+            </button>
+            <button class="synth-key" data-note="G4" data-freq="392.00">
+              <span class="key-note">G4</span>
+              <span class="key-hz">392.0 Hz</span>
+            </button>
+            <button class="synth-key active" data-note="A4" data-freq="440.00">
+              <span class="key-note">A4</span>
+              <span class="key-hz">440.0 Hz</span>
+            </button>
+            <button class="synth-key" data-note="B4" data-freq="493.88">
+              <span class="key-note">B4</span>
+              <span class="key-hz">493.9 Hz</span>
+            </button>
+            <button class="synth-key" data-note="C5" data-freq="523.25">
+              <span class="key-note">C5</span>
+              <span class="key-hz">523.3 Hz</span>
+            </button>
+          </div>
+
+          <div class="grid-metrics-row">
+            <div class="metric-box">
+              <span class="metric-label">ACTIVE NOTE</span>
+              <span class="metric-num text-gold" id="synth-note-readout">A4 (Concert Pitch)</span>
+            </div>
+            <div class="metric-box">
+              <span class="metric-label">WAVELENGTH IN AIR</span>
+              <span class="metric-num text-cyan" id="synth-wave-length">0.78 meters</span>
+            </div>
+            <div class="metric-box">
+              <span class="metric-label">TRANSDUCER STATE</span>
+              <span class="metric-num text-coral" id="synth-audio-state">READY TO PLAY</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MODULE 04: EVERYDAY MAGIC DECODED -->
+    <section id="magic-module" class="eng-module">
+      <div class="module-header">
+        <div class="module-badge-row">
+          <span class="module-index">MODULE 04 // APPLIED ELECTROMAGNETICS IN DAILY LIFE</span>
+          <span class="module-equation">&nabla; &times; E = &minus;&part;B / &part;t (Maxwell-Faraday Equation)</span>
+        </div>
+        <h2 class="module-title">Everyday Magic Decoded: <span class="gradient-text">How Your World Actually Works</span></h2>
+        <p class="module-subtitle">
+          The technologies we touch a hundred times a day feel like effortless magic—until you look beneath the glass with an electrical engineer's eyes. Inspect any card below to toggle between the everyday phenomenon and the exact physics principle running inside.
+        </p>
+      </div>
+
+      <div class="magic-cards-grid">
+        <!-- Card 1: Wireless Charging -->
+        <article class="magic-card" data-view="simple">
+          <div class="magic-card-top">
+            <span class="magic-icon">🔋</span>
+            <span class="magic-tag">FARADAY INDUCTION</span>
+          </div>
+          <h3 class="magic-card-title">Wireless Phone Charging</h3>
+          <p class="magic-text-simple">
+            How does energy jump from a charging pad into your phone through solid glass without a single exposed metal plug? The charging pad creates a rapidly pulsing magnetic bubble that reaches through the air and gently shakes the electrons inside your phone's hidden copper coil.
+          </p>
+          <div class="magic-text-blueprint">
+            <strong>EE Physics Blueprint:</strong> Governed by Faraday's Law of Electromagnetic Induction (<strong>&mathcal;E = &minus;N &middot; d&Phi;<sub>B</sub>/dt</strong>). A planar transmitter coil driven at <strong>110–205 kHz AC</strong> generates an oscillating magnetic flux that induces an alternating electromotive force in the phone's secondary receiver coil, which a full-bridge rectifier converts into 5V/9V DC battery charge.
+          </div>
+          <button class="magic-toggle-btn">🔍 Inspect EE Physics Blueprint</button>
+        </article>
+
+        <!-- Card 2: Noise-Canceling Headphones -->
+        <article class="magic-card" data-view="simple">
+          <div class="magic-card-top">
+            <span class="magic-icon">🎧</span>
+            <span class="magic-tag">WAVE INTERFERENCE</span>
+          </div>
+          <h3 class="magic-card-title">Active Noise Cancellation</h3>
+          <p class="magic-text-simple">
+            Noise-canceling headphones don't block out train or airplane roar with thick foam—they actually fight sound with "anti-sound." Tiny microphones listen to the outside noise and instantly create an upside-down mirror wave that erases the noise in mid-air before it reaches your eardrum.
+          </p>
+          <div class="magic-text-blueprint">
+            <strong>EE Physics Blueprint:</strong> Powered by <strong>180&deg; Destructive Phase Interference</strong>. An external MEMS microphone samples ambient pressure waves <strong>f(t)</strong>, and a Digital Signal Processor (DSP) synthesizes an inverted waveform <strong>&minus;f(t)</strong> shifted by exactly <strong>&pi; radians</strong>. When both acoustic waves meet inside the ear cup, their amplitudes sum to zero.
+          </div>
+          <button class="magic-toggle-btn">🔍 Inspect EE Physics Blueprint</button>
+        </article>
+
+        <!-- Card 3: Smartphone Touchscreens -->
+        <article class="magic-card" data-view="simple">
+          <div class="magic-card-top">
+            <span class="magic-icon">📱</span>
+            <span class="magic-tag">CAPACITIVE FIELD</span>
+          </div>
+          <h3 class="magic-card-title">Why Touchscreens Sense Only You</h3>
+          <p class="magic-text-simple">
+            Ever wondered why your phone screen ignores a plastic pen or fingernail, yet responds the instant your fingertip brushes the glass? Your screen doesn't feel pressure—it senses the natural bio-electricity stored inside your skin!
+          </p>
+          <div class="magic-text-blueprint">
+            <strong>EE Physics Blueprint:</strong> Uses a <strong>Mutual Capacitance Grid (C = &epsilon;A/d)</strong> etched from transparent Indium Tin Oxide (ITO). Because the human body is filled with conductive electrolyte ions, bringing your finger within 1 millimeter of the glass couples with the local electric field, drawing a tiny <strong>picofarad (&Delta;C)</strong> current spike that pinpoints your X-Y coordinates.
+          </div>
+          <button class="magic-toggle-btn">🔍 Inspect EE Physics Blueprint</button>
+        </article>
+
+        <!-- Card 4: Fiber Optic Internet -->
+        <article class="magic-card" data-view="simple">
+          <div class="magic-card-top">
+            <span class="magic-icon">🌐</span>
+            <span class="magic-tag">PHOTONIC WAVEGUIDE</span>
+          </div>
+          <h3 class="magic-card-title">Light Trapped in Glass Threads</h3>
+          <p class="magic-text-simple">
+            Every video call and message crossing continents travels at 200,000 kilometers per second as laser flashes inside glass threads thinner than a human hair—bouncing around curves on the ocean floor without a single drop of light leaking out.
+          </p>
+          <div class="magic-text-blueprint">
+            <strong>EE Physics Blueprint:</strong> Relies on <strong>Total Internal Reflection (Snell's Law: n₁ sin &theta;₁ = n₂ sin &theta;₂)</strong>. By surrounding a high-refractive-index silica core (<strong>n₁ &approx; 1.48</strong>) with lower-index cladding (<strong>n₂ &approx; 1.46</strong>), infrared laser pulses striking the boundary beyond the critical angle reflect 100% lossless down thousands of kilometers of cable.
+          </div>
+          <button class="magic-toggle-btn">🔍 Inspect EE Physics Blueprint</button>
+        </article>
+      </div>
+    </section>
+
+    <!-- MODULE 05: THE ENGINEER'S VAULT & SECRET RESONANCE DEDICATION -->
+    <section id="vault-module" class="eng-module vault-section">
+      <div class="vault-grid">
+        <!-- Left Column: Ujan Barai's Official Engineering Credentials -->
+        <div class="creator-dossier-card">
+          <div class="dossier-badge">ENGINEER'S VAULT // CREATOR ARCHITECTURE</div>
+          <h2 class="creator-name">Ujan Barai</h2>
+          <p class="creator-degree">
+            B.Tech in Electrical Engineering (4-Year Program) &bull; First-Year Undergraduate
+          </p>
+          <p class="creator-college">
+            🏛️ Kalyani Government Engineering College (KGEC)
+          </p>
+
+          <p class="creator-bio">
+            I designed and engineered <strong>ELECTRA</strong> from the ground up to bridge the gap between rigorous Electrical Engineering mathematics and visual human wonder. Every interactive oscilloscope, synchronous grid equation, and electrostatic particle on this platform runs on custom physics code written to prove that engineering is the closest thing we have to real magic.
+          </p>
+
+          <div class="creator-specs-grid">
+            <div class="spec-item">
+              <span class="spec-label">CORE DISCIPLINE</span>
+              <span class="spec-value">Electrical Engineering (EE)</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-label">INSTITUTION</span>
+              <span class="spec-value">KGEC, West Bengal</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-label">SIMULATION ENGINE</span>
+              <span class="spec-value">60 FPS Custom Canvas &amp; WebAudio</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-label">SYSTEM ARCHITECTURE</span>
+              <span class="spec-value">100% Bespoke Hand-Crafted Code</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column: The Secret Resonance Tribute for Your Partner -->
+        <div class="resonance-tribute-card">
+          <div class="card-top-bar">
+            <span class="mono-label">ENCRYPTED HARMONIC CHANNEL // 528 HZ</span>
+            <span id="tribute-status-badge" class="status-pill status-warning">STANDBY</span>
+          </div>
+
+          <div class="tribute-lock-panel" id="tribute-lock-view">
+            <div class="resonance-emblem">✨</div>
+            <h3 class="tribute-heading">The Phenomenon of Quantum Resonance</h3>
+            <p class="tribute-teaser">
+              In Electrical Engineering, resonance occurs when two independent circuits align at the exact same natural frequency—allowing a tiny spark to generate extraordinary, boundless energy. Flip the master switch below to unlock the hidden dedication channel of this project.
+            </p>
+            <button id="unlock-tribute-btn" class="btn-resonance-unlock">
+              💖 Activate Harmonic Resonance Switch
+            </button>
+          </div>
+
+          <!-- Hidden Revealed Constellation & Dedication View -->
+          <div class="tribute-revealed-panel hidden" id="tribute-revealed-view">
+            <div class="constellation-frame">
+              <canvas id="tribute-canvas" width="520" height="200"></canvas>
+            </div>
+            <div class="dedication-message-box">
+              <!-- UJAN: You can customize any word inside this message if you ever want to add her name! -->
+              <p class="dedication-quote">
+                "Out of all the equations, circuits, and invisible forces in this universe, my favorite phenomenon will always be the resonance I found with you. Every spark of curiosity and beauty in this world reminds me of you."
+              </p>
+              <div class="dedication-signature">
+                &mdash; Built &amp; Dedicated with Love by <strong>Ujan Barai</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- === END OF STEP 4 SLOT === -->
+
+  </main>
+
+  <!-- Engineered Footer -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <strong>ELECTRA</strong> &mdash; Hand-Crafted &amp; Engineered by <strong>Ujan Barai</strong>
+      </div>
+      <div class="footer-meta">
+        Department of Electrical Engineering &bull; Kalyani Government Engineering College (KGEC)
+      </div>
+    </div>
+  </footer>
+
+  <!-- Master Physics & Interactivity Engine -->
+  <script src="script.js"></script>
+</body>
+</html>
